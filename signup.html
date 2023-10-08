@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style1.css">
+</head>
+<script src="angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.11/ngStorage.min.js"></script>
+
+<!-- <script src="app.js"></script> -->
+
+<body ng-app="App" ng-controller="Controller">
+  <section>
+    <div class="main-form-container">
+      <div id="form_section" class="form-container">
+        <form ng-submit="validateForm()">
+
+
+          <div class="login-form form-wraper ">
+            <div>
+              <div class="form-title">
+                <h2>Login</h2>
+              </div>
+              <div class="input-group">
+                <div class="box">
+                  <span>
+                    <input placeholder="Email" type="email" ng-model="email" name="mail_id" class="myInput" type="text" id="n1" required/>
+                  </span>
+                </div>
+              </div>
+              <div class="input-group">
+                <div class="box">
+                  <span>
+                    <input placeholder="Password" ng-model="password" name="password" class="myInput" type="password" required/>
+                  </span>
+                </div>
+              </div>
+              <div class="forget-password">
+                <a href="">FORGOT PASSWORD</a>
+              </div>
+              <div class="action-button">
+                <button type="submit" class="submit">Login</button>
+              </div>
+            </div>
+        </form>
+      </div>
+<form ng-submit="validateSignUp()" method="post" action="/signup">
+
+      <div class="signUp-form form-wraper">
+        <div>
+          <div class="form-title">
+            <h2>Sign Up</h2>
+          </div>
+          <div class="input-group">
+            <div class="box">
+              <span>
+                <input placeholder="Full Name" ng-model="name" name="username1" class="myInput" type="text" required/>
+              </span>
+            </div>
+          </div>
+          <div class="input-group">
+            <div class="box">
+              <span>
+                <input placeholder="Email" type="email" ng-model="email" name="mail_id" class="myInput" type="text" required/>
+              </span>
+            </div>
+          </div>
+          <div class="input-group">
+            <div class="box">
+              <span>
+                <input placeholder="Mobile No." ng-model="number" name="phone_number" class="myInput" type="number" required/>
+              </span>
+            </div>
+          </div>
+          <div style="margin-bottom: 0px;" class="input-group">
+            <div class="box">
+              <span>
+                <input placeholder="Password" ng-model="password" class="myInput" name="password" type="password" required/>
+              </span>
+            </div>
+          </div><br>
+          <div class="input-group">
+            <div class="box">
+              <span>
+                <input placeholder="Age" class="myInput" ng-model="age" type="number" name="age" required/>
+              </span>
+            </div>
+          </div>
+          <div class="input-group">
+            <div class="box">
+              <span>
+                <input placeholder="Date of birth" ng-model="dob" name="dob" class="myInput" type="date" required/>
+              </span>
+            </div>
+          </div>
+          <div class="input-group">
+            <div class="box">
+              <span>
+                <input placeholder="Gender" ng-model="gender" class="myInput" name="gender" type="text" />
+              </span>
+            </div>
+          </div>
+          <div class="action-button">
+            <button type="submit" class="submit">Sign Up</button>
+          </div>
+        </div>
+      </div>
+    </form>
+    </div>
+    <div id="multiple-btn" class="bg-btn-container">
+      <div class="action-button">
+        <button>Login</button>
+      </div>
+      <div class="action-button">
+        <button>Sign Up</button>
+      </div>
+    </div>
+
+    </div>
+  </section>
+
+
+  <script>
+    const inputs = document.querySelectorAll("input");
+    inputs.forEach(function (input) {
+      input.addEventListener("focus", function () {
+        const parentElement = input.parentElement.parentElement;
+        parentElement.classList.add("box-animation");
+      });
+      input.addEventListener("blur", function () {
+        const parentElement = input.parentElement.parentElement;
+        parentElement.classList.remove("box-animation");
+      });
+    });
+
+    const buttons = document.querySelectorAll("#multiple-btn button");
+    const form_container = document.getElementById('form_section')
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        form_container.classList.toggle("left-right");
+
+      });
+    });
+
+    function validateForm() {
+      let x = document.getElementsByClassName("main-form-container").childNodes[0].childNodes[0].childNodes[1].innerHTML();
+      if (x = "") {
+        window.alert(" Email must be filled out");
+        return false;
+      }
+
+      let y = document.forms["myForm"]["Username"].value;
+      if (y == "") {
+        window.alert(" Author Name must be filled out");
+        return false;
+      }
+
+      let z = document.forms["myForm"]["theme"].value;
+      if (z == "") {
+        window.alert("Theme must be filled out");
+        return false;
+      }
+
+      let a = document.forms["myForm"]["review"].value;
+      if (a == "") {
+        window.alert("Review must be filled out");
+        return false;
+      }
+
+    }
+
+    var app = angular.module("App", [])
+    app.controller("Controller",function ($scope, $http, Service) {
+
+      $scope.validateForm = function () {
+        console.log($scope.email)
+        console.log($scope.password)
+        $scope.result = Service.validate($http, $scope.email, $scope.password)
+      }
+
+      $scope.validateSignUp = function() {
+        console.log($scope.number)
+        $scope.result=  Service.sign($http, $scope.name, $scope.age, $scope.email, $scope.dob, $scope.number, $scope.gender, $scope.password)
+      }
+
+    })
+
+    app.service("Service",[ '$scope','$localstorage',function ($http) {
+      var result = ''
+      this.validate = function ($http, email, password) {
+        console.log("Service accessed")
+        console.log(email, password)
+        const data = {
+          e: email,
+          p: password
+        }
+        var response
+        console.log(data)
+        $http({
+  method: 'POST',
+  url: 'http://localhost:3000/users/login',
+  data: data,
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  sslProtocol: 'TLSv1.2'
+}).then(function(response) {
+  console.log(response)
+  console.log(response.data)
+  console.log(response['data'])
+}, function(error) {
+  console.log(error)
+  console.log(error['data'])
+  console.log(error.data)
+  $localstorage.name=response.data._id;
+});
+      }
+
+      this.sign = function ($http, name, age, email, dob, number, gender, password) {
+        console.log(name, age, email, dob, number, gender, password)
+        const data = {
+          name: name,
+          age: age,
+          email: email,
+          dob: dob, 
+          number: number,
+          gender: gender,
+          password: password,
+        }
+          $http({
+          method: 'POST',
+          url: 'http://localhost:3000/users/login',
+          data: data,
+          headers: {
+          'Content-Type': 'application/json'
+    },
+    sslProtocol: 'TLSv1.2'
+  })
+        console.log("Service denied")
+      }
+
+    }])
+
+
+
+  </script>
+
+
+
+</body>
+
+</html>

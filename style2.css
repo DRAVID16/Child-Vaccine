@@ -1,0 +1,179 @@
+*{
+    margin: 0; padding: 0;
+    box-sizing: border-box;
+    font-family: 'Josefin Sans', sans-serif;
+    }
+    body{
+        background-image: url('background.png');
+        background-repeat: no-repeat;
+    }
+    header{
+     width: 50%vh;
+     height: 50%vh;
+     background-size: 50% 50%;
+    
+    }
+    
+    .mainheader{
+     width: 100;
+     height: 100px;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+    }
+    
+    .mainheader .logo img{
+     width: 300px; height: 100px;
+     padding-left: 60px;
+    }
+    
+    .mainheader nav{
+     width: 450px;
+     display: flex;
+     justify-content: space-around;
+     align-items: center;
+    }
+    
+    .mainheader nav a{
+     text-decoration: none;
+     color: black;
+     text-transform: uppercase;
+    }
+    
+    .menubtn{
+     margin-right: 60px;
+    }
+    .mainheader button{
+     padding: 10px 45px;
+     text-align: center;
+     font-size: 14px;
+     color: #fff;
+     border: none;
+     background-image: linear-gradient(to right,#649bff,#0070fa,#649bff);
+     border-radius: 10px;
+    }
+    
+    
+    main{
+     width: 100%;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+    }
+    
+    main .right-sec{
+     padding-right: 70px;
+    }
+
+    main .right-sec img{
+       width: 500px;
+       height: 500px;
+       border-radius: 30px;
+       }
+    
+    main .left-sec{
+     padding-left: 100px;
+    }
+    
+    .left-sec h2{
+     font-size: 20px;
+     text-transform: capitalize;
+     font-weight: lighter;
+     color: #242424;
+     margin-top: 100px;
+    }
+    
+    .left-sec h1{
+     font-size: 55px;
+     text-transform: capitalize;
+     font-weight: 700;
+     margin: 15px 0;
+    }
+    
+    .left-sec p{
+     margin-bottom: 20px;
+    }
+    
+    .left-sec button{
+     padding: 15px 45px;
+     text-align: center;
+     font-size: 14px;
+     color: #fff;
+     border: none;
+     background-image: linear-gradient(to right,#649bff,#0070fa,#649bff);
+     border-radius: 10px;
+    }
+
+
+    
+    .form{
+        margin-top: 20px;
+        margin-left: 650px;
+        width: 350px;
+        height: 450px;
+        border-radius: 20px;
+        background: #141414;        
+        border: 3px solid blue;
+        box-shadow: 0px 5px 10px 0px rgba(7,220,220),
+        1px 3px 4px 0px rgba(7,220,220);
+        border-image: linear-gradient(45deg,gold,deeppink) 1;
+        clip-path: inset(0px round 10px);
+        animation: huerotate 6s infinite linear;
+        filter: hue-rotate(360deg);
+    }
+    .form:hover{
+        border: 3px solid green;
+    transition: 0.5s ease-in-out;
+    }
+    @keyframes huerotate {
+        0%{
+           filter: hue-rotate(0deg);
+        }
+        100%{
+            filter: hue-rotate(360deg);
+        }
+    }
+    .box{
+        margin-top: 20px;
+        text-align: center;
+        color: white;
+    }
+    input{
+        margin: 16px auto;
+        width: 170px;
+        height: 40px;
+        border-radius: 20px;
+        text-align: center;
+        border: none;
+        border-bottom: 2px solid green;
+        color: #fff;
+        background:none;
+    }
+    input:hover{
+        border: 2px solid rgb(53,53,163);
+        width: 230px;
+        transition: all 0.7s ;
+    }
+    .btn{
+        width: 120px;
+        height: 40px;
+        border: 2px solid blue;
+        background: none;
+        color: white;
+        font-size: 18px;
+        border-radius: 20px;
+    }
+    .btn:hover{
+            border: 2px solid rgb(199,144,78);
+            transition: 0.5s ease;
+    }
+    
+    p{
+        margin-top: 13px;
+    }
+    p a{
+        text-decoration: none;
+        font-size: 22px;
+        color: blue;
+        font-weight: bold;
+    }
